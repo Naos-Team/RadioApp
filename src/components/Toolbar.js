@@ -10,7 +10,7 @@ const Toolbar = (props) => {
     <View style = {style_Toolbar.toolbar}>
      {left_icon && <Ionicons
         name={left_icon}
-        size={40}
+        size={35}
         onPress = {left_Press}
         color = 'white'
         style = {{
@@ -26,7 +26,7 @@ const Toolbar = (props) => {
       </Text>
      {right_icon && <Ionicons
         name={right_icon}
-        size={40}
+        size={35}
         onPress = {right_Press}
         color = 'white'
         style = {{
@@ -55,8 +55,8 @@ const style_Toolbar = StyleSheet.create({
     fontSize: FontSize.title,
     fontWeight: 'bold',
     color: 'white',
-    marginHorizontal: 40,
-    marginLeft: 50
+    marginHorizontal: 10,
+    marginRight: 50
   }
 })
 

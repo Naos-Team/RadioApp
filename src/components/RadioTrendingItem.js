@@ -31,7 +31,7 @@ const RadioTrendingItem = (props) => {
         </View>
         <Ionicons
           name = {(radio.is_favorite) ? 'heart' : 'heart-outline'}
-          size = {35}
+          size = {30}
           color = {(radio.is_favorite) ? 'red' : 'black'}
           onPress = {() => alert(radio.name)}
         />
@@ -47,8 +47,8 @@ const style_Trend_Item = StyleSheet.create({
   },
   thumbnail:{
     marginVertical: 2,
-    height: 135,
-    width: 135,
+    height: 125,
+    width: 125,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: Color.border_color
@@ -58,7 +58,7 @@ const style_Trend_Item = StyleSheet.create({
     marginHorizontal: 5
   },
   text_info:{
-    width: 95,
+    width: 90,
   },
   name:{
     color: 'black',

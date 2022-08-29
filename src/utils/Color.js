@@ -1,5 +1,5 @@
 export default {
-  primary_color: '#8F0909',
+  primary_color: '#373cb2',
   border_color: '#CACACA',
   text_second: '#A4A4A4',
   button_Cart: '#FF5722',

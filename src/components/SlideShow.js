@@ -5,7 +5,7 @@ import { WIDTH } from '../utils/Constant'
 
 const SlideShow = (props) => {
 
-  const {images} = props
+  const {items} = props
 
   const [selected, setSelected] = useState(0)
 
@@ -14,7 +14,7 @@ const SlideShow = (props) => {
 
   useEffect(()=> {
     setNextPage.current = setTimeout(() => {
-      const next_page = (selected === (images.length - 1)) ? 0 : WIDTH*(selected + 1)
+      const next_page = (selected === (items.length - 1)) ? 0 : WIDTH*(selected + 1)
       scroll.current.scrollTo({ x: next_page, y: 0, animated: true })
     }, 3000);
     return () => clearTimeout(setNextPage.current)
@@ -23,7 +23,7 @@ const SlideShow = (props) => {
   const onChange = ({nativeEvent}) => {
     let slide = nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width 
     slide = (slide < 0) ? 0 : Math.floor(slide)
-    slide = (slide === images.length) ? (images.length - 1) - 1 : Math.floor(slide)
+    slide = (slide === items.length) ? (items.length - 1) - 1 : Math.floor(slide)
     setSelected(slide)
   }
 
@@ -39,9 +39,9 @@ const SlideShow = (props) => {
         snapToInterval = {1}
       >
         {
-          images.map((image, index) => (
+          items.map((image, index) => (
             <Image
-              source={{uri:image}}
+              source={{uri:image.thumbnail}}
               key={index}
               style = {style_SlideShow.image}
             />
@@ -50,7 +50,7 @@ const SlideShow = (props) => {
       </ScrollView>
       <View style={style_SlideShow.circleindicator}>
         {
-          images.map((item, index) => (
+          items.map((item, index) => (
             <Text 
               style={style_SlideShow.circleindicator_point }
               key = {index}
