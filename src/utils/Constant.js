@@ -12,3 +12,5 @@ export const ONDEMAND_STACK = 'Ondemand'
 export const MOSTVIEW_STACK = 'Most View'
 export const FAVORITE_STACK = 'Favorite'
 export const PREMIUM_STACK = 'Premium'
+
+export const ONDEMAND_SCREEN = 'ONDEMAND_SCREEN'
