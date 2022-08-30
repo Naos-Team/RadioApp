@@ -12,6 +12,7 @@ import { AuthContext } from '../../auth/AuthProvider'
 import Icon from 'react-native-vector-icons/Feather'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5'
 import { InputField, CustomButton } from '../../components'
+import { Color } from '../../utils'
 function LoginScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -22,7 +23,7 @@ function LoginScreen({navigation}) {
             <View>
                 <Image 
                     style={styles.login_image} 
-                    source={require('../assets/images/login_image.png')}
+                    source={require('../../assets/images/login_img.png')}
                 />
                 <Text style={styles.text1}>Login</Text>
                 <InputField 
@@ -33,7 +34,7 @@ function LoginScreen({navigation}) {
                   icon={<Icon 
                         name='mail'
                         size={22} 
-                        color={Colors.blue}
+                        color={Color.primary_color}
                         style={styles.emailIcon}
                   keyboardType={'email-address'}
                     />}
@@ -47,7 +48,7 @@ function LoginScreen({navigation}) {
                   icon={<Icon 
                         name='lock'
                         size={22} 
-                        color={Colors.blue}
+                        color={Color.primary_color}
                         style={styles.emailIcon}
                     />}
                 fieldButtonLabel={'Forgot'}
@@ -67,10 +68,6 @@ function LoginScreen({navigation}) {
                 <View style={styles.otherView}>
                     <TouchableOpacity style={styles.googleButton}>
                         <FontAwesomeIcon name='google' size={24} color={'red'}/>
-                    </TouchableOpacity>
-    
-                    <TouchableOpacity style={styles.googleButton}>
-                        <FontAwesomeIcon name='facebook' size={25} color={Colors.blue}/>
                     </TouchableOpacity>
                 </View>
     
@@ -99,19 +96,19 @@ const styles = StyleSheet.create({
     login_image:{
         height: 230,
         width: 350,
-        resizeMode: 'contain'
+        resizeMode: 'cover'
         //transform: [{rotate: '-5deg'}]
     },
     text1:{
         fontSize: 28,
         fontWeight: '500',
-        color: Colors.blue,
+        color: Color.primary_color,
         marginTop: 20,
         marginBottom: 25,
     },
     emailView:{
         flexDirection: 'row',
-        borderBottomColor: Colors.gray,
+        borderBottomColor: 'gray',
         borderBottomWidth:1,
         paddingBottom: 2,
         alignItems: 'center',
@@ -126,11 +123,11 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     forgotText:{
-        color: Colors.blue,
+        color: Color.primary_color,
         fontWeight: '700'
     },
     loginButton:{
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.primary_color,
         padding: 15,
         borderRadius: 20,
         marginBottom: 30
@@ -139,7 +136,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '700',
         fontSize: 20,
-        color: Colors.white,
+        color: 'white',
     },
     orText:{
         textAlign: 'center',
@@ -151,7 +148,7 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     googleButton:{
-        borderColor: Colors.darkGray,
+        borderColor: 'gray',
         borderWidth: 0.5,
         borderRadius: 10,
         paddingHorizontal: 30,
@@ -159,7 +156,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     signUpText:{
-        color: Colors.blue,
+        color: Color.primary_color,
         fontWeight: '700',
         marginStart: 5,
         fontSize: 14

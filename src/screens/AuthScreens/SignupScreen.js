@@ -22,7 +22,7 @@ function SignupScreen({ navigation }) {
       <View>
         <Image
           style={styles.login_image}
-          source={require('../assets/images/register_image.png')}
+          source={{uri: 'https://ps.w.org/login-customizer/assets/icon-256x256.png?rev=2455454'}}
         />
         <Text style={styles.text1}>Register</Text>
 
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   text1: {
     fontSize: 28,
     fontWeight: '500',
-    color: Colors.blue,
+    color: Color.primary_color,
     marginTop: 20,
     marginBottom: 25,
   },
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   signUpText: {
-    color: Colors.blue,
+    color: Color.primary_color,
     fontWeight: '700',
     marginStart: 5,
     fontSize: 15
