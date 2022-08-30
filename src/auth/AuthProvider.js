@@ -1,46 +1,37 @@
 import React, { createContext, useState } from 'react';
-import { 
-    auth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    signOut,
-    firebaseSet,
-    firebaseDatabaseRef,
-    firebaseDatabase,
-    firebaseUpdate,
-    firebaseRead
-} from './firebase';
+import auth from '@react-native-firebase/auth'
+import database from '@react-native-firebase/database';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const AuthContext = createContext({});
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-
+    
     return (
         <AuthContext.Provider
             value={{
                 user,
                 setUser,
                 login: async(email, password) => {
-                    signInWithEmailAndPassword(auth, email, password)
-                        .then((userCredential) => {
+                    await auth().signInWithEmailAndPassword(email,password)
+                    .then((userCredential) => {
                             const user = userCredential.user;
                             setUser(user)
-                        })
-                        .catch((error) => {
+                    })
+                    .catch((error) => {
                             alert(`Error Login: ${error.message}`);
-                        })
+                    })
                 },
 
                 signup: async (email, password) => {
-                    createUserWithEmailAndPassword(auth, email, password)
-                        .then((useCredential) => {
+                    await auth().createUserWithEmailAndPassword(email,password)
+                    .then((useCredential) => {
                             const user = useCredential.user
                             alert('Successfully registered')
                             setUser(user)
-                            firebaseSet(firebaseDatabaseRef(
-                                firebaseDatabase,
-                                `users/${user.uid}`
-                            ),{
+                            database()
+                            .ref(`/users/${user.uid}`)
+                            .set({
                                 email: user.email,
                                 emailVerified: user.emailVerified,
                                 accessToken: user.accessToken,
@@ -49,28 +40,24 @@ const AuthProvider = ({children}) => {
                                 address: ''
                             })
                         })
-                        .catch((error) => {
-                            alert(`Cannot sign up, error ${error.message} Email: ${email}`)
-                        })
+                    .catch((error) => {
+                        alert(`Cannot sign up, error ${error.message} Email: ${email}`)
+                    })
                 },
 
                 logout: async () => {
-                    signOut(auth)
-                        .then(() => {
-                        // Sign-out successful.
-                            setUser(null)
-                        })
-                        .catch((error) => {
-                        // An error happened.
+                    await auth().signOut()
+                    .then(() => {
+                        setUser(null)
+                    })
+                    .catch((error) => {
                         alert("Error signOut")
-                        });
+                    });
                 },
 
                 update: async(name, address, phone) => {
-                    firebaseUpdate(firebaseDatabaseRef(
-                        firebaseDatabase,
-                        `users/${user.uid}`
-                    ),{
+                    database().ref(`users/${user.uid}`)
+                    .update({
                         name: name,
                         address: address,
                         phone: phone
@@ -83,11 +70,19 @@ const AuthProvider = ({children}) => {
 
                 readData: async () =>{
                     try{
-                        const starCountRef = firebaseDatabaseRef(firebaseDatabase, `users/${user.uid}`)
-                        firebaseRead(starCountRef, (snapshot) => {
-                            const data = snapshot.val()
-                            return data
-                        })
+                        database().ref(`users/${user.uid}`)
+                        .then(snapshot => {return snapshot.val()})
+                    }
+                    catch(error){
+                        alert(error.message)
+                    }
+                },
+
+                googleLogin: async () => {
+                    try{
+                        const { idToken } = await GoogleSignin.signIn();
+                        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+                        return auth().signInWithCredential(googleCredential);
                     }
                     catch(error){
                         alert(error.message)

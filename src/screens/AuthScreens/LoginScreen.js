@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { 
     View, 
     Text , 
@@ -16,7 +16,7 @@ import { Color } from '../../utils'
 function LoginScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { login } = useContext(AuthContext);
+    const { login, googleLogin } = useContext(AuthContext);
     
     return (
         <SafeAreaView style={styles.container}>
@@ -66,7 +66,12 @@ function LoginScreen({navigation}) {
                 <Text style={styles.orText}>Or, login with</Text>
     
                 <View style={styles.otherView}>
-                    <TouchableOpacity style={styles.googleButton}>
+                    <TouchableOpacity 
+                        style={styles.googleButton}
+                        onPress={()=>{
+                            googleLogin()
+                        }}
+                    >
                         <FontAwesomeIcon name='google' size={24} color={'red'}/>
                     </TouchableOpacity>
                 </View>

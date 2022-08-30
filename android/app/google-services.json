@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1062471900976",
+    "firebase_url": "https://radioapp-a2d1f-default-rtdb.firebaseio.com",
     "project_id": "radioapp-a2d1f",
     "storage_bucket": "radioapp-a2d1f.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1062471900976-p10q4ihfk8pgoptdg1heb7b0dib4e1vl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.radioapp",
+            "certificate_hash": "8e596f8556a087fed0d3c8e32fd9c7174290e44f"
+          }
+        },
         {
           "client_id": "1062471900976-c3hbq0t434ovs59jpvt2efmiqlcr997o.apps.googleusercontent.com",
           "client_type": 3
@@ -29,6 +38,13 @@
             {
               "client_id": "1062471900976-c3hbq0t434ovs59jpvt2efmiqlcr997o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1062471900976-9u85rc6dr85fsmqo4ckv430fpnuip4r3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.radioapp"
+              }
             }
           ]
         }

@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native'
+import { HEIGHT, WIDTH } from '../../utils/Constant'
 import { Color } from '../../utils'
 import Icon from 'react-native-vector-icons/Feather'
 import { InputField, CustomButton } from '../../components'
@@ -22,7 +23,7 @@ function SignupScreen({ navigation }) {
       <View>
         <Image
           style={styles.login_image}
-          source={{uri: 'https://ps.w.org/login-customizer/assets/icon-256x256.png?rev=2455454'}}
+          source={require('../../assets/images/login_img.png')}
         />
         <Text style={styles.text1}>Register</Text>
 
@@ -87,9 +88,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   login_image: {
-    height: 230,
-    width: 350,
-    resizeMode: 'contain'
+    height: HEIGHT*0.3,
+    width: WIDTH*0.8,
+    resizeMode: 'cover',
     //transform: [{rotate: '-5deg'}]
   },
   text1: {

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SplashScreen, LoginScreen, SignupScreen } from '../screens';
 import { NavigationContainer } from '@react-navigation/native';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 const Stack = createNativeStackNavigator();
 export default function AuthStack(){
     const [isFirstLaunch, setIsFirstLaunch] = useState(true);
@@ -17,6 +19,10 @@ export default function AuthStack(){
     } else {
         routeName = 'Login';
     }
+
+    GoogleSignin.configure({
+        webClientId: '1062471900976-c3hbq0t434ovs59jpvt2efmiqlcr997o.apps.googleusercontent.com',
+      });
 
     return (
         <NavigationContainer>
