@@ -4,6 +4,8 @@ export const value1 = "1";
 export const value2 = "2";
 export const value3 = "3";
 
+export const API_URL = 'https://tuanpc.pw/radiorn/api/'
+
 export const HEIGHT = Dimensions.get('window').height
 export const WIDTH = Dimensions.get('window').width
 
