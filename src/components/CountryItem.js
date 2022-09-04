@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Color, FontSize } from '../utils'
 
@@ -7,7 +7,10 @@ const CountryItem = (props) => {
   const {country, onClick} = props
 
   return (
-    <View style = {style_CountryItem.parent}>
+    <TouchableOpacity 
+      style = {style_CountryItem.parent}
+      onPress = {onClick}
+    >
       <Image
         source={{
           uri: country.thumbnail ??
@@ -18,7 +21,7 @@ const CountryItem = (props) => {
       <Text style = {style_CountryItem.name}>
         {country.name}
       </Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -31,8 +34,8 @@ const style_CountryItem = StyleSheet.create({
   },
   thumbnail:{
     marginVertical: 2,
-    height: 110,
-    width: 110,
+    height: 100,
+    width: 100,
     borderRadius: 100,
     borderWidth: 1,
     borderColor: Color.border_color,
@@ -41,7 +44,7 @@ const style_CountryItem = StyleSheet.create({
   name:{
     color: 'black',
     fontSize: FontSize.medium ,
-    width: 100,
+    width: 90,
     marginHorizontal: 5,
     textAlign:'center'
   },

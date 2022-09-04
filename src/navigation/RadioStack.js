@@ -1,6 +1,6 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {RadioScreen, SearchScreen} from '../screens'
+import {ListRadioScreen, RadioCountryScreen, RadioScreen, SearchScreen} from '../screens'
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +21,14 @@ const RadioStack = () => {
       <Stack.Screen
         name= {'SearchScreen'}
         component = {SearchScreen}
+      />
+      <Stack.Screen
+        name= {'RadioListScreen'}
+        component = {ListRadioScreen}
+      />
+      <Stack.Screen
+        name= {'RadioCountryScreen'}
+        component = {RadioCountryScreen}
       />
     </Stack.Navigator>
   )

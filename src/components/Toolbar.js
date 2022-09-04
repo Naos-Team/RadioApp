@@ -55,8 +55,7 @@ const style_Toolbar = StyleSheet.create({
     fontSize: FontSize.title,
     fontWeight: 'bold',
     color: 'white',
-    marginHorizontal: 10,
-    marginRight: 50
+    marginHorizontal: 40,
   }
 })
 
