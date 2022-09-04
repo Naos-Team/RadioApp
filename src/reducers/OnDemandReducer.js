@@ -4,7 +4,7 @@ const SET_DATA = 'SET_DATA';
 //actions
 export const SET_DATA_ACTION = (data) => {
     return {
-        action: SET_DATA,
+        type: SET_DATA,
         data
     }
 }

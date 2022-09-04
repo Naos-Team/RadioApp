@@ -5,6 +5,9 @@ import {
 } from 'react-native';
 import { makeRequest } from '../../utils/Methods';
 import { HEIGHT, WIDTH, API_URL } from '../../utils/Constant';
+import { SET_DATA_ACTION } from '../../reducers/OnDemandReducer';
+import OnDemandReducer from '../../reducers/OnDemandReducer';
+import DemandPlaylistItem from '../../components/DemandPlaylistItem';
 
 const initState = {
     playlists: []
@@ -12,7 +15,9 @@ const initState = {
 
 const OnDemandScreen = () => {
 
-    const [state, dispatch] = useReducer(initState)
+    const [state, dispatch] = useReducer(OnDemandReducer, initState)
+
+    console.log("Ondemand state:", state)
 
     const fetchData = async () => {
 
@@ -20,11 +25,12 @@ const OnDemandScreen = () => {
 
         const url = API_URL + 'playlist/getAll.php'
 
-        console.log(url)
-
         const result = await makeRequest(url, 'GET', {})
 
-        console.log("Result:",result.data)
+        console.log(result.data)
+
+        dispatch(SET_DATA_ACTION(result.data))
+
     }
 
     useEffect(() => {
@@ -33,12 +39,22 @@ const OnDemandScreen = () => {
 
     return (
         <SafeAreaView>
-            <ScrollView>
-                <View>
-                    <Text style={styles.text}>On Demand</Text>
-                </View>
 
-            </ScrollView>
+
+            <FlatList
+                data={state.playlists}
+                numColumns={2}
+                renderItem={({item, index}) => {
+                    return <DemandPlaylistItem key={item.id} playlist={item}/>
+                }}
+                ListHeaderComponent={() => {
+                    return (
+                        <View>
+                            <Text style={styles.text}>On Demand</Text>
+                        </View>
+                    )
+                }}
+            />
         </SafeAreaView>
     )
 }
@@ -50,7 +66,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: WIDTH * 0.04,
         marginTop: HEIGHT * 0.025
-    }
+    },
+
 })
 
 export default OnDemandScreen
