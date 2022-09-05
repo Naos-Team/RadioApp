@@ -15,11 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "1062471900976-p10q4ihfk8pgoptdg1heb7b0dib4e1vl.apps.googleusercontent.com",
+          "client_id": "1062471900976-qqn922gl28rfuk3sq7hfl0udvqbjd703.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.radioapp",
             "certificate_hash": "8e596f8556a087fed0d3c8e32fd9c7174290e44f"
+          }
+        },
+        {
+          "client_id": "1062471900976-uh2v6ar264behdn25udteqtsmkp1plhn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.radioapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {

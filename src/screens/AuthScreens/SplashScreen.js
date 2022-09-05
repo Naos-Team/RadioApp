@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { View, Text, Image, StyleSheet, ActivityIndicator, SafeAreaView } from 'react-native'
 import { WIDTH, HEIGHT } from '../../utils/Constant'
-function SplashScreen({navigation}) {
+export default function SplashScreen({navigation}) {
   useEffect(()=>{
       setTimeout(() => {
         navigation.navigate('Login')
@@ -52,5 +52,3 @@ const styles = StyleSheet.create({
     marginTop:10
   }
 })
-
-export default SplashScreen

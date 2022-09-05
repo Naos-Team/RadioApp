@@ -85,8 +85,18 @@ const AuthProvider = ({children}) => {
                         return auth().signInWithCredential(googleCredential);
                     }
                     catch(error){
+                        console.error(error)
                         alert(error.message)
                     }
+                },
+
+                forgotPassword: async(email) => {
+                    await auth().sendPasswordResetEmail(email)
+                    .then((user)=> {
+                        alert('Please check your email')
+                    }).catch((error) => {
+                        console.log(e)
+                    })
                 }
             }}>
             {children}

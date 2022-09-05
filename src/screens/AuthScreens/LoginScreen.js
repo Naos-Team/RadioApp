@@ -51,7 +51,10 @@ function LoginScreen({navigation}) {
                         color={Color.primary_color}
                         style={styles.emailIcon}
                     />}
-                fieldButtonLabel={'Forgot'}
+                    fieldButtonLabel={'Forgot'}
+                    pressForgot={()=>{
+                        navigation.navigate('ForgotPass')
+                    }}
                 />
         
                 <CustomButton 

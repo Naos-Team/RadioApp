@@ -2,7 +2,15 @@ import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import { Color } from '../../utils'
 export default function InputField(props) {
-    const {value, label, icon, inputType, keyboardType, fieldButtonLabel, fieldButtonFunction, ...rest} = props
+    const {
+        value, 
+        label, 
+        icon, 
+        inputType, 
+        keyboardType, 
+        fieldButtonLabel, 
+        pressForgot,
+        ...rest} = props
     return (
     
         <View style={styles.emailView}>
@@ -15,7 +23,7 @@ export default function InputField(props) {
                 {...rest}
             />
             <TouchableOpacity
-                onPress={fieldButtonFunction}
+                onPress={pressForgot}
             >
                 <Text style={styles.forgotText}>
                     {fieldButtonLabel}
