@@ -5,7 +5,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const AuthContext = createContext({});
 const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
     
     return (
         <AuthContext.Provider
@@ -15,8 +15,7 @@ const AuthProvider = ({children}) => {
                 login: async(email, password) => {
                     await auth().signInWithEmailAndPassword(email,password)
                     .then((userCredential) => {
-                            const user = userCredential.user;
-                            setUser(user)
+                            setUser(userCredential.user)
                     })
                     .catch((error) => {
                             alert(`Error Login: ${error.message}`);
@@ -82,7 +81,7 @@ const AuthProvider = ({children}) => {
                     try{
                         const { idToken } = await GoogleSignin.signIn();
                         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-                        return auth().signInWithCredential(googleCredential);
+                        setUser((await auth().signInWithCredential(googleCredential)).user)
                     }
                     catch(error){
                         console.error(error)

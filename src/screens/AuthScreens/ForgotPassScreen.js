@@ -3,13 +3,23 @@ import { CustomButton, InputField } from '../../components'
 import React, { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../../auth/AuthProvider'
 import { Color } from '../../utils'
+import Icon from 'react-native-vector-icons/Feather'
 
 const ForgotPassScreen = ({navigation}) => {
     const [email, setEmail] = useState('')
     const { forgotPassword } = useContext(AuthContext);
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
+        <Icon 
+            name='arrow-left' 
+            size={30} 
+            style={styles.backBtn} 
+            color={Color.primary_color}
+            onPress={()=>{
+                navigation.goBack()
+            }}
+            />
         <View>
                 <Image 
                     style={styles.login_image} 
@@ -38,12 +48,6 @@ const ForgotPassScreen = ({navigation}) => {
                     }}
                 />
     
-                <View style={styles.registerView}>
-                    <TouchableOpacity
-                        onPress={()=>navigation.navigate('Login')}>
-                        <Text style={styles.signUpText}>Login</Text>
-                    </TouchableOpacity>
-                </View>  
             </View>
     </SafeAreaView>
   )
@@ -128,6 +132,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         
+    },
+    backBtn:{
+        position: 'absolute',
+        top: 20,
+        left: 30
     }
 })
 
