@@ -3,8 +3,7 @@ import React, {useContext} from 'react'
 import Routes from './src/navigation'
 import AuthStack from './src/navigation/AuthStack'
 import MostViewStack from './src/navigation/MostViewStack'
-import { AuthProvider } from './src/auth/AuthProvider'
-import { AuthContext } from './src/auth/AuthProvider'
+import { AuthContext, AuthProvider } from './src/auth/AuthProvider'
 const App = () => {
   const { user } = useContext(AuthContext);
 
