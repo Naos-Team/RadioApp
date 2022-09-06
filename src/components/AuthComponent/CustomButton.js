@@ -3,9 +3,10 @@ import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-nativ
 import Icon  from 'react-native-vector-icons/Feather'
 import { Color } from '../../utils'
 export default function CustomButton(props) {
-    const {label, onPress} = props
+    const {label, onPress, isEnable} = props
     return (
         <TouchableOpacity 
+            disabled={isEnable}
             style={styles.loginButton}
             onPress={onPress}>
                 <Text style={styles.loginText}>{label}</Text>
@@ -18,7 +19,8 @@ const styles = StyleSheet.create({
         backgroundColor: Color.primary_color,
         padding: 15,
         borderRadius: 20,
-        marginBottom: 30
+        marginBottom: 30,
+        marginTop: 20
     },
     loginText:{
         textAlign: 'center',

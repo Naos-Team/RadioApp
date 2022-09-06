@@ -39,6 +39,8 @@ function LoginScreen({navigation}) {
                   keyboardType={'email-address'}
                     />}
                 />
+
+                <View style={{marginBottom: 20}}></View>
     
                 <InputField 
                   label={'Password'}
@@ -60,9 +62,16 @@ function LoginScreen({navigation}) {
                 <CustomButton 
                     label={'Login'}
                     onPress={()=>{
-                        login(email,password)
-                        setEmail('')
-                        setPassword('')
+                        if (email.length>0 || password.length>0)
+                        {
+                            login(email,password)
+                            setEmail('')
+                            setPassword('')
+                        }
+                        else{
+                            alert('Please enter your information')
+                        }
+                        
                     }}
                 />
     

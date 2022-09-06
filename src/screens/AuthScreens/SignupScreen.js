@@ -13,11 +13,22 @@ import { Color } from '../../utils'
 import Icon from 'react-native-vector-icons/Feather'
 import { InputField, CustomButton } from '../../components'
 import { AuthContext } from '../../auth/AuthProvider'
+import { isValidEmail, isValidPassword, isConfirmPassword } from '../../utils/Validation'
 function SignupScreen({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [errorEmail, setErrorEmail] = useState('');
+  const [errorPassword, setErrorPassword] = useState('');
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
+
   const { signup } = useContext(AuthContext);
 
+  const isValidationOK = () => email.length > 0 
+                                && password.length > 0 
+                                && isValidEmail == true 
+                                && isValidPassword == true
+                                && isConfirmPassword == true;
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -37,14 +48,23 @@ function SignupScreen({ navigation }) {
             style={styles.emailIcon}
             keyboardType={'email-address'}
           />}
-          onChangeText={text => setEmail(text)} 
-
+          onChangeText={(text) => {
+            setErrorEmail(isValidEmail(text) == true ? 
+                          '' : 'Email is not valid')
+            setEmail(text)
+          }}
         />
+        <Text style={{color: 'red', fontSize: 13, marginBottom: 15}}>{errorEmail}</Text>
+
         <InputField
           value={password}
           label={'Password'}
           inputType={'password'}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => {
+            setErrorPassword(isValidPassword(text) == true ? 
+                            '' : 'Password length must be at least 3 characters')
+            setPassword(text)
+          }}
           icon={<Icon
             name='lock'
             size={22}
@@ -52,10 +72,18 @@ function SignupScreen({ navigation }) {
             style={styles.emailIcon}
           />}
         />
+        <Text style={{color: 'red', fontSize: 13, marginBottom: 5}}>{errorPassword}</Text>
+
         <InputField
+          value ={confirmPassword}
           label={'Confirm Password'}
           inputType={'password'}
-          onChangeText={() => { }}
+          onChangeText={(text) => 
+          {
+            setErrorConfirmPassword(isConfirmPassword(password, text) == true ?
+                                    '' : 'Password is not correct')
+            setConfirmPassword(text)
+          }}
           icon={<Icon
             name='lock'
             size={22}
@@ -63,9 +91,17 @@ function SignupScreen({ navigation }) {
             style={styles.emailIcon}
           />}
         />
+        <Text style={{color: 'red', fontSize: 13, marginBottom: 5}}>{errorConfirmPassword}</Text>
+
         <CustomButton
           label={'Register'}
-          onPress={()=>signup(email,password)} 
+          onPress={()=>{
+              signup(email,password)
+              setEmail('')
+              setPassword('')
+              setConfirmPassword('')
+          }} 
+          isEnable={isValidationOK}
         />
 
 

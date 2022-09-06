@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
         borderBottomWidth:1,
         paddingBottom: 2,
         alignItems: 'center',
-        marginBottom: 25
+        marginBottom: 10
     },
 })
