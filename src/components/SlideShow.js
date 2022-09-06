@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, Image, ScrollView} from 'react-native'
 import React, { useEffect, useState, useRef, memo } from 'react'
 import { Color, FontSize } from '../utils'
 import { WIDTH } from '../utils/Constant'
+import LinearGradient from 'react-native-linear-gradient'
+import SlideShowItem from './SlideShowItem'
 
 const SlideShow = (props) => {
 
@@ -32,7 +34,6 @@ const SlideShow = (props) => {
       <ScrollView 
         pagingEnabled = {true}
         ref={scroll}
-        style={style_SlideShow.image}
         showsHorizontalScrollIndicator = {false}
         horizontal={true}
         onScroll = {onChange}
@@ -40,15 +41,15 @@ const SlideShow = (props) => {
       >
         {
           items.map((image, index) => (
-            <Image
-              source={{uri:image.thumbnail}}
-              key={index}
-              style = {style_SlideShow.image}
+            <SlideShowItem
+              key = {index}
+              item = {image}
+              selected = {(index === selected)}
             />
           ))
         }
       </ScrollView>
-      <View style={style_SlideShow.circleindicator}>
+      {/* <View style={style_SlideShow.circleindicator}>
         {
           items.map((item, index) => (
             <Text 
@@ -62,7 +63,7 @@ const SlideShow = (props) => {
             </Text>
           ))
         }
-      </View>
+      </View> */}
     </View>
   )
 }
@@ -73,11 +74,6 @@ const style_SlideShow = StyleSheet.create({
     height: WIDTH*3/5,
     marginTop: 0,
     marginBottom: 2
-  },
-  image:{
-    width:WIDTH,
-    height:WIDTH*3/5,
-    resizeMode:'cover'
   },
   circleindicator:{
     flexDirection:'row',

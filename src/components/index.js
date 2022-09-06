@@ -6,6 +6,8 @@ import LoadItem from './LoadItem'
 import CountryItem from './CountryItem'
 import CountryListItem from './CountryListItem'
 import RadioSearchItem from './RadioSearchItem'
+import SlideShowItem from './SlideShowItem'
+
 
 export {
   SlideShow,
@@ -15,5 +17,6 @@ export {
   LoadItem,
   CountryItem,
   CountryListItem,
-  RadioSearchItem
+  RadioSearchItem,
+  SlideShowItem
 }
