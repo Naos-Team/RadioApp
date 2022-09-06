@@ -1,11 +1,9 @@
 import React from 'react'
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, Image, TouchableOpacity, RefreshControl } from 'react-native'
 import { HEIGHT, WIDTH } from '../utils/Constant'
 import { ic_playcirle } from '../images/'
 
 const DemandPlaylistItem = ({ playlist }) => {
-
-    console.log(playlist)
 
     return (
         <View style={styles.container} >
@@ -61,10 +59,10 @@ const DemandPlaylistItem = ({ playlist }) => {
                             >{playlist.name}</Text>
                             <Text style={{
                                 color: '#cccccc',
-                                fontSize: HEIGHT * 0.016
+                                fontSize: HEIGHT * 0.015
                             }}
                                 numberOfLines={1}
-                                ellipsizeMode='tail'>aaa</Text>
+                                ellipsizeMode='tail'>{playlist.total + " tracks"}</Text>
                         </View>
 
                         <Image
