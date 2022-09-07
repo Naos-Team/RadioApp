@@ -25,7 +25,7 @@ const MostViewScreen = () => {
         <FlatList
           data={mostViewList}
           renderItem={({item, index})=>
-          <View eleva style={styles.itemContainer}>
+          <View style={styles.itemContainer}>
             <View style={styles.itemView}>
               <View>
                 <Image
