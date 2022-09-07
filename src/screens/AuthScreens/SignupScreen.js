@@ -24,11 +24,15 @@ function SignupScreen({ navigation }) {
 
   const { signup } = useContext(AuthContext);
 
-  const isValidationOK = () => email.length > 0 
-                                && password.length > 0 
-                                && isValidEmail == true 
-                                && isValidPassword == true
-                                && isConfirmPassword == true;
+  const isValidationOK = () => {
+    if( email.length > 0 
+        && password.length > 0 
+        && isValidEmail == true 
+        && isValidPassword == true
+        && isConfirmPassword == true)
+          return true
+    else return false
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -53,8 +57,9 @@ function SignupScreen({ navigation }) {
                           '' : 'Email is not valid')
             setEmail(text)
           }}
+          value={email}
         />
-        <Text style={{color: 'red', fontSize: 13, marginBottom: 15}}>{errorEmail}</Text>
+        <Text style={{color: 'red', fontSize: 13, marginBottom: 5}}>{errorEmail}</Text>
 
         <InputField
           value={password}
@@ -62,7 +67,7 @@ function SignupScreen({ navigation }) {
           inputType={'password'}
           onChangeText={(text) => {
             setErrorPassword(isValidPassword(text) == true ? 
-                            '' : 'Password length must be at least 3 characters')
+                            '' : 'Password length must be at least 6 characters')
             setPassword(text)
           }}
           icon={<Icon
@@ -95,13 +100,14 @@ function SignupScreen({ navigation }) {
 
         <CustomButton
           label={'Register'}
+          isEnable={isValidationOK()}
           onPress={()=>{
-              signup(email,password)
-              setEmail('')
-              setPassword('')
-              setConfirmPassword('')
+                signup(email,password)
+                setEmail('')
+                setPassword('')
+                setConfirmPassword('')
           }} 
-          isEnable={isValidationOK}
+          
         />
 
 

@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <AuthProvider>
-          {user ? <MostViewStack/> : <AuthStack/>}
+          <MostViewStack/>
     </AuthProvider>
   )
 }

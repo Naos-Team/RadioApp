@@ -81,7 +81,10 @@ const AuthProvider = ({children}) => {
                     try{
                         const { idToken } = await GoogleSignin.signIn();
                         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-                        setUser((await auth().signInWithCredential(googleCredential)).user)
+                        await auth().signInWithCredential(googleCredential).then((useCredential)=>{
+                            setUser(useCredential.user)
+                        })
+                        
                     }
                     catch(error){
                         console.error(error)
