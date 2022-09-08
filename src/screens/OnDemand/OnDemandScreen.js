@@ -9,6 +9,7 @@ import { SET_DATA_ACTION, SET_REFRESH_ACTION, INCREASE_PAGE_ACTION } from '../..
 import OnDemandReducer from '../../reducers/OnDemandReducer';
 import DemandPlaylistItem from '../../components/DemandPlaylistItem';
 import Progressbar from '../../components/Progressbar';
+import { PLAYLISTDETAIL_SCREEN } from '../../utils/Constant';
 
 const initState = {
     playlists: [],
@@ -17,7 +18,7 @@ const initState = {
     step: 8
 }
 
-const OnDemandScreen = () => {
+const OnDemandScreen = ({ navigation }) => {
 
     const [state, dispatch] = useReducer(OnDemandReducer, initState)
 
@@ -34,13 +35,16 @@ const OnDemandScreen = () => {
         if (result.data.length > 0) {
             dispatch(SET_DATA_ACTION(result.data))
             dispatch(INCREASE_PAGE_ACTION())
-        }else{
+        } else {
             console.log('End fetching')
         }
 
     }
 
-    
+    const openDetailScreen = () => {
+        navigation.navigate(PLAYLISTDETAIL_SCREEN);
+    }
+
 
     useEffect(() => {
         fetchData()
@@ -54,7 +58,11 @@ const OnDemandScreen = () => {
                 data={state.playlists}
                 numColumns={2}
                 renderItem={({ item, index }) => {
-                    return <DemandPlaylistItem key={item.id} playlist={item} />
+                    return <DemandPlaylistItem key={item.id} playlist={item}
+                        onPress={() => {
+                            openDetailScreen(title, thumb)
+                        }}
+                    />
                 }}
                 onEndReached={() => {
                     fetchData();
