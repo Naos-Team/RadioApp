@@ -3,11 +3,11 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, RefreshControl } from 
 import { HEIGHT, WIDTH } from '../utils/Constant'
 import { ic_playcirle } from '../images/'
 
-const DemandPlaylistItem = ({ playlist }) => {
+const DemandPlaylistItem = ({ playlist, ...rest }) => {
 
     return (
         <View style={styles.container} >
-            <TouchableOpacity style={styles.contentBackground}>
+            <TouchableOpacity style={styles.contentBackground} {...rest}>
                 <Image
                     style={{
                         position: 'absolute',

@@ -16,3 +16,4 @@ export const FAVORITE_STACK = 'Favorite'
 export const PREMIUM_STACK = 'Premium'
 
 export const ONDEMAND_SCREEN = 'ONDEMAND_SCREEN'
+export const PLAYLISTDETAIL_SCREEN = 'PLAYLISTDETAIL_SCREEN'
