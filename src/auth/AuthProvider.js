@@ -6,7 +6,22 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 const AuthContext = createContext({});
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState({});
-    
+    const createUser = async (uid) => {
+        try {
+          const response = await fetch(
+            `http://tuanpc.pw/radiorn/api/user/create.php?uid=${uid}`
+          );
+          const json = await response.json();
+          if (json.message=='success'){
+            return true
+          }
+          else{
+            return false
+          }
+        } catch (error) {
+          console.error(error);
+        }
+    };
     return (
         <AuthContext.Provider
             value={{
@@ -26,7 +41,6 @@ const AuthProvider = ({children}) => {
                     await auth().createUserWithEmailAndPassword(email,password)
                     .then((useCredential) => {
                             const user = useCredential.user
-                            alert('Successfully registered')
                             setUser(user)
                             database()
                             .ref(`/users/${user.uid}`)
@@ -38,6 +52,9 @@ const AuthProvider = ({children}) => {
                                 phone: '',
                                 address: ''
                             })
+                            if(createUser(user.uid)){
+                                alert('Register successfully')
+                            }
                         })
                     .catch((error) => {
                         alert(`Cannot sign up, error ${error.message} Email: ${email}`)
