@@ -1,43 +1,59 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import {
     SafeAreaView, ScrollView, View, Image,
-    RefreshControl, Text, StyleSheet,
+    ActivityIndicator, Text, StyleSheet,
     TouchableOpacity
 } from 'react-native';
+import ImageColors from 'react-native-image-colors';
 import LinearGradient from 'react-native-linear-gradient';
+import { makeRequest } from '../../utils/Methods';
+import { API_URL } from '../../utils/Constant';
 
 import { HEIGHT, WIDTH } from '../../utils/Constant'
 
 const PlaylistDetailScreen = ({ navigation, route }) => {
 
-    const { name, thumb } = route.params;
+    const { item } = route.params;
+    const [averageColor, setAverageColor] = useState('black');
+    const [songs, setSongs] = useState([]);
+    const [progress, setProgress] = useState(true);
 
+    const getMainColor = async () => {
+        const result = await ImageColors.getColors(item.thumbnail, {
+            fallback: 'black',
+        });
 
-    console.log({ name, thumb });
+        console.log(result.darkMuted);
+
+        setAverageColor(result.muted);
+
+    }
+
+    const fetchSongs = async () => {
+
+        const url = API_URL + 'radio/getOnDemandByPlaylistID.php?playlist_id=' + item.id;
+        const res = await makeRequest(url, 'GET', {});
+
+        console.log("Songs:", res.data);
+
+        setProgress(false);
+        setSongs(res.data);
+    }
+
+    useEffect(() => {
+        getMainColor();
+        fetchSongs();
+    }, [])
 
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <ScrollView style={styles.scrollView}
-            // refreshControl={
-            //     <RefreshControl
-            //         refreshing={state.refreshing}
-            //         onRefresh={onRefresh}
-            //     />
-            // }
-            >
-                {/* <MessageModal
-                    modalVisible={state.modalVisible}
-                    setModalVisible={() => {
-                        dispatch(SET_MODAL_VISIBLE('', '', false));
-                    }}
-                    param={{ title: state.modalTitle, message: state.modalMessage }}
-                /> */}
+            <ScrollView style={styles.scrollView}>
 
                 <View style={styles.view_image}>
                     <Image
                         style={styles.image}
-                        source={{ uri: thumb }}
+                        source={{ uri: item.thumbnail }}
                         resizeMode='cover'
                     />
 
@@ -66,10 +82,10 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
                         />
 
                         <Image
-                            source={{ uri: thumb }}
+                            source={{ uri: item.thumbnail }}
                             style={{
                                 position: 'absolute',
-                                top: '10%',
+                                top: '13%',
                                 height: HEIGHT * 0.28,
                                 width: HEIGHT * 0.28,
                                 borderRadius: HEIGHT * 0.02,
@@ -81,7 +97,7 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
 
                         <View style={{
                             position: 'absolute',
-                            bottom: '7%',
+                            bottom: '5%',
                             width: WIDTH,
                             paddingHorizontal: WIDTH * 0.08,
                             flexDirection: 'row',
@@ -94,11 +110,11 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
                                 <Text style={styles.title}
                                     numberOfLines={2}
                                     ellipsizeMode='tail'
-                                >{name}</Text>
+                                >{item.name}</Text>
                                 <Text style={{
                                     color: '#191919',
                                     fontSize: HEIGHT * 0.023,
-                                }}>Total</Text>
+                                }}>{item.total} tracks available</Text>
                             </View>
 
                             <TouchableOpacity style={{
@@ -108,23 +124,12 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
                                     style={{
                                         width: HEIGHT * 0.065,
                                         height: HEIGHT * 0.065,
-                                        tintColor: 'black',
+                                        tintColor: averageColor,
                                     }}
                                 />
                             </TouchableOpacity>
 
                         </View>
-{/* 
-                        <View
-                            style={{
-                                position: 'absolute',
-                                bottom: 0,
-                                width: '100%',
-                                height: 1,
-                                backgroundColor: '#c2c2c2'
-                            }}
-                        /> */}
-
 
                     </View>
 
@@ -166,9 +171,21 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
                 } */}
             </ScrollView>
 
-            {/* {state.showProgress &&
-                <Progressbar />
-            } */}
+            {progress &&
+                <View style={{
+                    width: WIDTH,
+                    position: 'absolute',
+                    bottom: HEIGHT * 0.2,
+                    alignItems: 'center'
+                }}>
+                    <ActivityIndicator
+                        size={HEIGHT * 0.06}
+                        color='black'
+                    />
+                </View>
+            }
+
+
         </SafeAreaView>
     )
 }
@@ -184,8 +201,8 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        color: 'black',
-        fontSize: HEIGHT * 0.035,
+        color: '#191919',
+        fontSize: HEIGHT * 0.04,
         fontWeight: 'bold',
     },
 

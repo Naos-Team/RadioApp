@@ -41,13 +41,10 @@ const OnDemandScreen = ({ navigation }) => {
 
     }
 
-    const openDetailScreen = (name, thumb) => {
-
-        console.log({name, thumb})
+    const openDetailScreen = (item) => {
 
         navigation.navigate(PLAYLISTDETAIL_SCREEN, {
-            name,
-            thumb,
+            item
         });
     }
 
@@ -67,7 +64,7 @@ const OnDemandScreen = ({ navigation }) => {
                     return <DemandPlaylistItem key={item.id} playlist={item}
                         onPress={() => {
                             console.log(item);
-                            openDetailScreen(item.name, item.thumbnail)
+                            openDetailScreen(item)
                         }}
                     />
                 }}
