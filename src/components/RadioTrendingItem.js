@@ -44,7 +44,7 @@ const RadioTrendingItem = (props) => {
         <Ionicons
           name = {(radio.is_favorite) ? 'heart' : 'heart-outline'}
           size = {30}
-          color = {(radio.is_favorite) ? 'red' : 'black'}
+          color = {(radio.is_favorite) ? '#0c0626' : 'black'}
           onPress = {() => alert(radio.name)}
         />
       </View>
