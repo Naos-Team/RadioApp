@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image, StyleSheet, SafeAreaView, Platform } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet, SafeAreaView, Platform, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { WIDTH, HEIGHT } from '../utils/Constant'
 import { Color } from '../utils'
@@ -23,15 +23,21 @@ const FavoriteScreen = () => {
                 <Text style={styles.header}>Favorite</Text>
             </View>
             <View style={styles.bodyView}>
-                <FlatList 
+                
+                <FlatList
                     data={favoriteList}
+                    numColumns={2} 
                     renderItem={({item, index})=>
-                        <View style={styles.itemView}>
-                            <Image 
-                                style={styles.itemImage}
-                                source={{uri: item.thumbnail}}/>
-                            <Text>{item.name}</Text>
+                      <TouchableOpacity 
+                        activeOpacity={0.5} 
+                        style={styles.itemView}>
+                        <View style={styles.imageView}>
+                          <Image 
+                            style={styles.itemImage}
+                            source={{uri: item.thumbnail}}/>
                         </View>
+                        <Text style={styles.itemName}>{item.name}</Text>
+                      </TouchableOpacity>                        
                     }
                 />
             </View>
@@ -60,15 +66,35 @@ const styles = StyleSheet.create({
     },
     bodyView:{
       flex: 90,
+      width: WIDTH,
+      justifyContent: 'center',
     },
     itemView:{
-        width: WIDTH*0.4,
-        height: WIDTH*0.4,
+        flex: 0.5,
+        marginTop: 5,
+        marginBottom: 15,
+        borderadius: 20,
+        borderWidth: 0.1,
+        alignSelf: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
+        
+    },
+    imageView:{
+      
     },
     itemImage:{
-        width: 100,
-        height: 100,
+      resizeMode: 'cover',
+      width: WIDTH*0.4,
+      height: WIDTH*0.4,
+      borderRadius: 30,
+      borderColor: 'gray',
+      borderWidth: 0.1
+    },
+    itemName:{
+      color: 'black',
+      fontWeight: '500',
+      marginTop: 5
     }
 })
 
