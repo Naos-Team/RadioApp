@@ -1,4 +1,4 @@
-import { View, Text, FlatList, RefreshControl, StyleSheet } from 'react-native'
+import { View, Text, FlatList, RefreshControl, StyleSheet, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { CountryItem, CountryListItem, RadioTrendingItem, Toolbar } from '../components'
 import { Methods } from '../utils'
@@ -38,13 +38,11 @@ const RadioCountryScreen = (props) => {
   }
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <Toolbar
         title = {item.name}
         left_icon = {'chevron-back-outline'}
-        right_icon = {'search-outline'}
         left_Press = {() => goBack()}
-        right_Press = {() => alert('search')}
       />
       <FlatList
         data = {state.radios}
@@ -70,7 +68,7 @@ const RadioCountryScreen = (props) => {
           />
         }
       />
-    </View>
+    </SafeAreaView>
   )
 }
 

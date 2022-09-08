@@ -11,7 +11,7 @@ export const RADIO_STACK = 'Radio'
 export const ONDEMAND_STACK = 'Ondemand'
 export const MOSTVIEW_STACK = 'Most View'
 export const FAVORITE_STACK = 'Favorite'
-export const PREMIUM_STACK = 'Premium'
+export const SEARCH_STACK = 'Search'
 
 export const URL_SERVER = 'https://tuanpc.pw/radiorn/api/'
 export const URL_GET_ALL_PLL = URL_SERVER + 'playlist/getAll.php'

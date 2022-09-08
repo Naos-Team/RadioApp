@@ -15,15 +15,17 @@ const SlideShow = (props) => {
   const setNextPage = useRef()
 
   useEffect(()=> {
+    const w = WIDTH*4/5 - 25 + 10
     setNextPage.current = setTimeout(() => {
-      const next_page = (selected === (items.length - 1)) ? 0 : WIDTH*(selected + 1)
+      const next_page = (selected === (items.length - 1)) ? 0 : (w*(selected) + w - 1/10*WIDTH + 5 + WIDTH/10)
       scroll.current.scrollTo({ x: next_page, y: 0, animated: true })
     }, 3000);
     return () => clearTimeout(setNextPage.current)
   }, [selected])
 
   const onChange = ({nativeEvent}) => {
-    let slide = nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width 
+    const w = WIDTH*4/5 - 25 + 10
+    let slide = nativeEvent.contentOffset.x / (w)
     slide = (slide < 0) ? 0 : Math.floor(slide)
     slide = (slide === items.length) ? (items.length - 1) - 1 : Math.floor(slide)
     setSelected(slide)
@@ -45,6 +47,8 @@ const SlideShow = (props) => {
               key = {index}
               item = {image}
               selected = {(index === selected)}
+              isFirst = {(index === 0)}
+              isLast = {(index === items.length - 1)}
             />
           ))
         }

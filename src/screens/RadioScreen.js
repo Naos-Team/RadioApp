@@ -26,7 +26,7 @@ const RadioScreen = (props) => {
   })
 
   const loadData = async() => {
-    const resp = await Methods.get_Data_HomeSCR(1, 7, -1)
+    const resp = await Methods.get_Data_HomeSCR(1, 7, 'usertest2')
     setData(resp)
   }
 
@@ -55,8 +55,9 @@ const RadioScreen = (props) => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style = {{backgroundColor: 'white'}}>
       <ScrollView
+        showsVerticalScrollIndicator = {false}
         refreshControl={
           <RefreshControl
             refreshing = {data.reload}
@@ -75,19 +76,9 @@ const RadioScreen = (props) => {
           />
         }
       >
-        <TouchableOpacity 
-          style = {style_RadioScr.search_view}
-          onPress = {() => {
-            navigate('SearchScreen')
-          }}
-        >
-          <Ionicons
-            style={{position:'absolute', top:10, left:10, height:30, width:30, tintColor:'black'}}
-            name = {'search-outline'}
-            color = {'black'}
-            size = {27}
-          />
-        </TouchableOpacity>
+        <Text style = {style_RadioScr.title}>
+          Home
+        </Text>
         <SlideShow
           items = {data.playlist}
         />

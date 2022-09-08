@@ -19,10 +19,6 @@ const RadioStack = () => {
         component = {RadioScreen}
       />
       <Stack.Screen
-        name= {'SearchScreen'}
-        component = {SearchScreen}
-      />
-      <Stack.Screen
         name= {'RadioListScreen'}
         component = {ListRadioScreen}
       />

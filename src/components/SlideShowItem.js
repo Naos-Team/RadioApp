@@ -7,12 +7,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const SlideShowItem = (props) => {
 
-  const {item, selected} = props
+  const {item, selected, isFirst, isLast} = props
 
   const size_custom = (selected) ? 0 : 25
 
   return (
-    <View style = {style_SlideShow_item(size_custom).parent}>
+    <View 
+      style = {{
+        ...style_SlideShow_item(size_custom).parent,
+        marginStart: (isFirst) ?  (WIDTH/10 +5) : 5,
+        marginEnd: (isLast) ?  (WIDTH/10 +5) : 5
+      }}
+      
+    >
       <Image
         source={{uri: item.thumbnail}}
         style = {style_SlideShow_item(size_custom).image}
@@ -27,7 +34,7 @@ const SlideShowItem = (props) => {
       <View
         style = {{
           ...style_SlideShow_item(size_custom).play_btn_background,
-          // backgroundColor: (selected) ? 'rgba(0,0,0,0)' : 'rgba(255, 255, 255, 0.6)'
+          backgroundColor: (selected) ? 'rgba(0,0,0,0)' : 'rgba(255, 255, 255, 0.6)'
         }}
       >
         <View style = {style_SlideShow_item(size_custom).play_btn}>
@@ -48,7 +55,7 @@ const style_SlideShow_item = (size_custom) => StyleSheet.create({
     width: WIDTH*4/5 - size_custom,
     height: WIDTH*3/5 - size_custom,
     marginHorizontal: 5,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   image:{
     width: WIDTH*4/5 - size_custom,

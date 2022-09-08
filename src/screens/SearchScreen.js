@@ -114,12 +114,7 @@ const SearchScreen = (props) => {
   }
 
   return (
-    <SafeAreaView style = {{flex: 1}}>
-      <Toolbar
-        title = 'Search'
-        left_icon = {'chevron-back-outline'}
-        left_Press = {() => goBack()}
-      />
+    <SafeAreaView style = {{flex: 1, backgroundColor: 'white'}}>
       <View style = {style_Search_Scr.search_view}>
         <Ionicons
           style={{position:'absolute', top:10, left:10, height:30, width:30, tintColor:'black'}}
@@ -374,6 +369,7 @@ const style_Search_Scr = StyleSheet.create({
     color: 'white',
     fontSize: FontSize.medium - 2,
     alignSelf:'center',
+    backgroundColor: '#0c0626'
   },
   btn:{
     justifyContent: 'center',

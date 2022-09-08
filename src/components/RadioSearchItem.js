@@ -10,7 +10,6 @@ const RadioSearchItem = (props) => {
 
   return (
     <View>
-      <BorderItem/>
       <TouchableOpacity 
         style = {{
           ...style_Search_Item.parent,
@@ -54,9 +53,9 @@ const RadioSearchItem = (props) => {
 
 const style_Search_Item = StyleSheet.create({
   parent:{
-    marginVertical: 2,
+    marginVertical: 5,
     flexDirection: 'row',
-    paddingHorizontal: 5
+    paddingHorizontal: 10
   },
   thumbnail:{
     marginVertical: 2,
