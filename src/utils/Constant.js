@@ -14,7 +14,7 @@ export const FAVORITE_STACK = 'Favorite'
 export const SEARCH_STACK = 'Search'
 
 export const URL_SERVER = 'https://tuanpc.pw/radiorn/api/'
-export const URL_GET_ALL_PLL = URL_SERVER + 'playlist/getAll.php'
+export const URL_GET_ALL_PLL = URL_SERVER + 'playlist/getRange.php?page=0&step=20'
 export const URL_GET_ON_DEMAND = URL_SERVER + 'radio/getOnDemand.php'
 export const URL_GET_TRENDING = URL_SERVER + 'radio/getTrendingRadio.php'
 export const URL_GET_BY_PAGE = URL_SERVER + 'radio/getByPage.php'
