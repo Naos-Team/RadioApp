@@ -21,7 +21,6 @@ function SignupScreen({ navigation }) {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
   const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
-
   const { signup } = useContext(AuthContext);
 
   const isValidationOK = () => {
@@ -33,6 +32,8 @@ function SignupScreen({ navigation }) {
           return true
     else return false
   };
+
+  
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -106,6 +107,7 @@ function SignupScreen({ navigation }) {
                 setEmail('')
                 setPassword('')
                 setConfirmPassword('')
+
           }} 
           
         />

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image, StyleSheet, SafeAreaView, Platform } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet, SafeAreaView, Platform, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { WIDTH, HEIGHT } from '../utils/Constant'
 import { Color } from '../utils'
@@ -25,7 +25,7 @@ const MostViewScreen = () => {
         <FlatList
           data={mostViewList}
           renderItem={({item, index})=>
-          <View style={styles.itemContainer}>
+          <TouchableOpacity style={styles.itemContainer}>
             <View style={styles.itemView}>
               <View>
                 <Image
@@ -34,7 +34,7 @@ const MostViewScreen = () => {
                 />
               </View>
               <View style={styles.itemName}>
-                <Text style={styles.numberText}>#{index+1}</Text>
+                <Text style={styles.numberText}>#{index+1}: {item.views}</Text>
                 <Text style={styles.nameText}>{item.name}</Text>
               </View>
               <View style={styles.playView}>
@@ -44,7 +44,7 @@ const MostViewScreen = () => {
                 />
               </View>
           </View>
-          </View>}
+          </TouchableOpacity>}
         />
       </View>
       
@@ -105,7 +105,8 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   numberText:{
-    color: 'gray'
+    color: '#b30047',
+    fontWeight: '500'
   },
   itemPlay:{
     width: 30,
