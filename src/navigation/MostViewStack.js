@@ -6,7 +6,6 @@ import { MostViewScreen } from '../screens';
 const Stack = createNativeStackNavigator();
 const MostViewStack = () => {
   return (
-    <NavigationContainer>
       <Stack.Navigator
           initialRouteName={'MostView'}
           screenOptions={{
@@ -15,8 +14,6 @@ const MostViewStack = () => {
       >
           <Stack.Screen name="MostView" component={MostViewScreen} />
       </Stack.Navigator>
-
-  </NavigationContainer>
   )
 }
 
