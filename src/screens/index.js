@@ -17,8 +17,6 @@ export {
   ForgotPassScreen,
   MostViewScreen,
   FavoriteScreen,
-  RadioScreen,
-  SearchScreen,
   ListRadioScreen,
   RadioCountryScreen
 }
