@@ -8,7 +8,7 @@ import ImageColors from 'react-native-image-colors';
 import LinearGradient from 'react-native-linear-gradient';
 import { makeRequest } from '../../utils/Methods';
 import { API_URL } from '../../utils/Constant';
-
+import OnDemandItem from '../../components/OnDemandItem';
 import { HEIGHT, WIDTH } from '../../utils/Constant'
 
 const PlaylistDetailScreen = ({ navigation, route }) => {
@@ -138,8 +138,8 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
                         onPress={() => navigation.goBack()}
                         style={{
                             position: 'absolute',
-                            height: HEIGHT * 0.06,
-                            width: HEIGHT * 0.06,
+                            height: HEIGHT * 0.055,
+                            width: HEIGHT * 0.055,
                             margin: WIDTH * 0.03
                         }}>
                         <Image
@@ -153,22 +153,15 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
 
                 </View>
 
-                {/* {state.songs.length > 0 &&
+                {songs.length > 0 &&
                     <>
-                        {state.songs.map((song, index) => {
-                            return <SongItem
-                                key={song.song_id}
-                                url={song.song_thumb}
-                                song_name={song.song_name}
-                                onPress={() => playWithSelectedSong(song)}
-                                artist_name={state.artists.map(artist => {
-                                    if (artist.artist_id === song.artist_id) {
-                                        return artist.artist_name
-                                    }
-                                })} />
+                        {songs.map((song, index) => {
+                            return <OnDemandItem
+                                key={song.id}
+                                item={song} />
                         })}
                     </>
-                } */}
+                }
             </ScrollView>
 
             {progress &&
