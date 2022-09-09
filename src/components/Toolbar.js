@@ -10,9 +10,9 @@ const Toolbar = (props) => {
     <View style = {style_Toolbar.toolbar}>
      {left_icon && <Ionicons
         name={left_icon}
-        size={40}
+        size={35}
         onPress = {left_Press}
-        color = 'white'
+        color = 'black'
         style = {{
           ...style_Toolbar.icon,
           left: 0
@@ -24,16 +24,6 @@ const Toolbar = (props) => {
       >
         {title}
       </Text>
-     {right_icon && <Ionicons
-        name={right_icon}
-        size={40}
-        onPress = {right_Press}
-        color = 'white'
-        style = {{
-          ...style_Toolbar.icon,
-          right: 0
-        }}
-      />}
     </View>
   )
 }
@@ -41,7 +31,6 @@ const Toolbar = (props) => {
 const style_Toolbar = StyleSheet.create({
   toolbar:{
     height:HEIGHT * 1/14,
-    backgroundColor: Color.primary_color,
     flexDirection:'row',
     alignItems:'center',
   },
@@ -52,11 +41,10 @@ const style_Toolbar = StyleSheet.create({
   tittle:{
     flex: 1,
     textAlign:'left',
-    fontSize: FontSize.title,
+    fontSize: FontSize.title +5,
     fontWeight: 'bold',
-    color: 'white',
+    color: 'black',
     marginHorizontal: 40,
-    marginLeft: 50
   }
 })
 

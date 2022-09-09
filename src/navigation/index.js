@@ -7,7 +7,8 @@ import RadioStack from './RadioStack';
 import OnDemandStack from './OnDemandStack';
 import MostViewStack from './MostViewStack';
 import FavoriteStack from './FavoriteStack';
-import PremiumStack from './PremiumStack';
+import SearchStack from './SearchStack';
+
 const Tab = createBottomTabNavigator()
 
 const screenOptions = ({route}) => ({
@@ -25,14 +26,14 @@ const screenOptions = ({route}) => ({
       case CONTANTS.ONDEMAND_STACK:
         iconName = 'albums-outline'
         break
+      case CONTANTS.SEARCH_STACK:
+        iconName = 'search-circle-outline'
+        break
       case CONTANTS.MOSTVIEW_STACK:
         iconName = 'thumbs-up-outline'
         break
       case CONTANTS.FAVORITE_STACK:
         iconName = 'heart-circle-outline'
-        break
-      case CONTANTS.PREMIUM_STACK:
-        iconName = 'globe-outline'
         break
       default:
         break
@@ -59,16 +60,16 @@ export default function Routes() {
           component = {OnDemandStack}
         />
         <Tab.Screen
+          name = {CONTANTS.SEARCH_STACK}
+          component = {SearchStack}
+        />
+        <Tab.Screen
           name = {CONTANTS.MOSTVIEW_STACK}
           component = {MostViewStack}
         />
         <Tab.Screen
           name = {CONTANTS.FAVORITE_STACK}
           component = {FavoriteStack}
-        />
-        <Tab.Screen
-          name = {CONTANTS.PREMIUM_STACK}
-          component = {PremiumStack}
         />
       </Tab.Navigator>
     </NavigationContainer>

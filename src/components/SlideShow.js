@@ -2,10 +2,12 @@ import { View, Text, StyleSheet, Image, ScrollView} from 'react-native'
 import React, { useEffect, useState, useRef, memo } from 'react'
 import { Color, FontSize } from '../utils'
 import { WIDTH } from '../utils/Constant'
+import LinearGradient from 'react-native-linear-gradient'
+import SlideShowItem from './SlideShowItem'
 
 const SlideShow = (props) => {
 
-  const {images} = props
+  const {items} = props
 
   const [selected, setSelected] = useState(0)
 
@@ -13,17 +15,19 @@ const SlideShow = (props) => {
   const setNextPage = useRef()
 
   useEffect(()=> {
+    const w = WIDTH*4/5 - 25 + 10
     setNextPage.current = setTimeout(() => {
-      const next_page = (selected === (images.length - 1)) ? 0 : WIDTH*(selected + 1)
+      const next_page = (selected === (items.length - 1)) ? 0 : (w*(selected) + w - 1/10*WIDTH + 5 + WIDTH/10)
       scroll.current.scrollTo({ x: next_page, y: 0, animated: true })
     }, 3000);
     return () => clearTimeout(setNextPage.current)
   }, [selected])
 
   const onChange = ({nativeEvent}) => {
-    let slide = nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width 
+    const w = WIDTH*4/5 - 25 + 10
+    let slide = nativeEvent.contentOffset.x / (w)
     slide = (slide < 0) ? 0 : Math.floor(slide)
-    slide = (slide === images.length) ? (images.length - 1) - 1 : Math.floor(slide)
+    slide = (slide === items.length) ? (items.length - 1) - 1 : Math.floor(slide)
     setSelected(slide)
   }
 
@@ -32,25 +36,26 @@ const SlideShow = (props) => {
       <ScrollView 
         pagingEnabled = {true}
         ref={scroll}
-        style={style_SlideShow.image}
         showsHorizontalScrollIndicator = {false}
         horizontal={true}
         onScroll = {onChange}
         snapToInterval = {1}
       >
         {
-          images.map((image, index) => (
-            <Image
-              source={{uri:image}}
-              key={index}
-              style = {style_SlideShow.image}
+          items.map((image, index) => (
+            <SlideShowItem
+              key = {index}
+              item = {image}
+              selected = {(index === selected)}
+              isFirst = {(index === 0)}
+              isLast = {(index === items.length - 1)}
             />
           ))
         }
       </ScrollView>
-      <View style={style_SlideShow.circleindicator}>
+      {/* <View style={style_SlideShow.circleindicator}>
         {
-          images.map((item, index) => (
+          items.map((item, index) => (
             <Text 
               style={style_SlideShow.circleindicator_point }
               key = {index}
@@ -62,7 +67,7 @@ const SlideShow = (props) => {
             </Text>
           ))
         }
-      </View>
+      </View> */}
     </View>
   )
 }
@@ -73,11 +78,6 @@ const style_SlideShow = StyleSheet.create({
     height: WIDTH*3/5,
     marginTop: 0,
     marginBottom: 2
-  },
-  image:{
-    width:WIDTH,
-    height:WIDTH*3/5,
-    resizeMode:'cover'
   },
   circleindicator:{
     flexDirection:'row',
