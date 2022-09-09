@@ -41,6 +41,8 @@ const AuthProvider = ({children}) => {
                     await auth().createUserWithEmailAndPassword(email,password)
                     .then((useCredential) => {
                             const user = useCredential.user
+                            console.log('user', useCredential.user)
+
                             setUser(user)
                             database()
                             .ref(`/users/${user.uid}`)
