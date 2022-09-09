@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "1062471900976",
+    "firebase_url": "https://radioapp-a2d1f-default-rtdb.firebaseio.com",
+    "project_id": "radioapp-a2d1f",
+    "storage_bucket": "radioapp-a2d1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062471900976:android:e12c26d0db5efc82c272f5",
+        "android_client_info": {
+          "package_name": "com.radioapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062471900976-qqn922gl28rfuk3sq7hfl0udvqbjd703.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.radioapp",
+            "certificate_hash": "8e596f8556a087fed0d3c8e32fd9c7174290e44f"
+          }
+        },
+        {
+          "client_id": "1062471900976-uh2v6ar264behdn25udteqtsmkp1plhn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.radioapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1062471900976-c3hbq0t434ovs59jpvt2efmiqlcr997o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY6QoGx7qFlvF-ENY8QIOwonYDXM6GMB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062471900976-c3hbq0t434ovs59jpvt2efmiqlcr997o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1062471900976-9u85rc6dr85fsmqo4ckv430fpnuip4r3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.radioapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

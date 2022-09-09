@@ -8,7 +8,6 @@ import OnDemandStack from './OnDemandStack';
 import MostViewStack from './MostViewStack';
 import FavoriteStack from './FavoriteStack';
 import PremiumStack from './PremiumStack';
-
 const Tab = createBottomTabNavigator()
 
 const screenOptions = ({route}) => ({
@@ -45,6 +44,7 @@ const screenOptions = ({route}) => ({
 })
 
 export default function Routes() {
+
   return (
     <NavigationContainer>
       <Tab.Navigator 
