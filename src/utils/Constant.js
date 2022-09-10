@@ -4,6 +4,8 @@ export const value1 = "1";
 export const value2 = "2";
 export const value3 = "3";
 
+export const API_URL = 'https://tuanpc.pw/radiorn/api/'
+
 export const HEIGHT = Dimensions.get('window').height
 export const WIDTH = Dimensions.get('window').width
 
@@ -24,3 +26,6 @@ export const URL_GET_MOSTVIEW = URL_SERVER + 'radio/getMostViewRadio.php'
 export const URL_GET_RADIO_BY_LANG = URL_SERVER + 'radio/getByLanguage.php'
 export const URL_GET_RADIO_BY_COUNTRY = URL_SERVER + 'radio/getByCountry.php'
 export const URL_GET_RADIO_BY_SEARCH = URL_SERVER + 'radio/getSearchResult.php'
+
+export const ONDEMAND_SCREEN = 'ONDEMAND_SCREEN'
+export const PLAYLISTDETAIL_SCREEN = 'PLAYLISTDETAIL_SCREEN'
