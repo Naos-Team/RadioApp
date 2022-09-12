@@ -22,11 +22,11 @@ const OnDemandScreen = ({ navigation }) => {
 
     const [state, dispatch] = useReducer(OnDemandReducer, initState)
 
-    console.log("Re-render:", state)
+    // console.log("Re-render:", state)
 
     const fetchData = async () => {
 
-        console.log('Fetching...')
+        // console.log('Fetching...')
 
         const url = API_URL + `playlist/getRange.php?page=${state.page}&step=${state.step}`
 
