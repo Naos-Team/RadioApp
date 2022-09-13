@@ -26,7 +26,6 @@ export default function AuthStack() {
     });
 
     return (
-        <NavigationContainer>
             <Stack.Navigator
                 initialRouteName={routeName}
                 screenOptions={{
@@ -39,7 +38,6 @@ export default function AuthStack() {
                 <Stack.Screen name="ForgotPass" component={ForgotPassScreen} />
             </Stack.Navigator>
 
-        </NavigationContainer>
 
     )
 }

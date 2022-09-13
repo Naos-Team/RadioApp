@@ -1,12 +1,10 @@
 import { View, Text } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
 import { FavoriteScreen } from '../screens';
 const Stack = createNativeStackNavigator();
 const FavoriteStack = () => {
   return (
-    <NavigationContainer>
       <Stack.Navigator
           initialRouteName={'Favorite'}
           screenOptions={{
@@ -15,8 +13,6 @@ const FavoriteStack = () => {
       >
           <Stack.Screen name="Favorite" component={FavoriteScreen} />
       </Stack.Navigator>
-
-  </NavigationContainer>
   )
 }
 

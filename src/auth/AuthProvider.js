@@ -30,7 +30,7 @@ const AuthProvider = ({children}) => {
                 login: async(email, password) => {
                     await auth().signInWithEmailAndPassword(email,password)
                     .then((userCredential) => {
-                            setUser(userCredential.user)
+                            //setUser(userCredential.user)
                     })
                     .catch((error) => {
                             alert(`Error Login: ${error.message}`);
@@ -43,7 +43,7 @@ const AuthProvider = ({children}) => {
                             const user = useCredential.user
                             console.log('user', useCredential.user)
 
-                            setUser(user)
+                            //setUser(user)
                             database()
                             .ref(`/users/${user.uid}`)
                             .set({
@@ -66,7 +66,7 @@ const AuthProvider = ({children}) => {
                 logout: async () => {
                     await auth().signOut()
                     .then(() => {
-                        setUser(null)
+                        //setUser(null)
                     })
                     .catch((error) => {
                         alert("Error signOut")
@@ -101,7 +101,7 @@ const AuthProvider = ({children}) => {
                         const { idToken } = await GoogleSignin.signIn();
                         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
                         await auth().signInWithCredential(googleCredential).then((useCredential)=>{
-                            setUser(useCredential.user)
+                            //setUser(useCredential.user)
                         })
                         
                     }
