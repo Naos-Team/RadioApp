@@ -17,7 +17,7 @@ const PlayerBottomSheet = () => {
             renderContent={() => {
                 return <MusicScreen/>
             }}
-            enabledGestureInteraction={true}
+            enabledGestureInteraction={false}
             onOpenEnd={() => setIsExpand(false)}
             onCloseEnd={() => setIsExpand(true)}
         />
