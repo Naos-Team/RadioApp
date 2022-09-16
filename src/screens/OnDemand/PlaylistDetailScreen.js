@@ -9,6 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { makeRequest } from '../../utils/Methods';
 import { API_URL } from '../../utils/Constant';
 import OnDemandItem from '../../components/OnDemandItem';
+import { playPlaylist, playWithSelectedSong } from '../../utils/Methods';
 import { HEIGHT, WIDTH } from '../../utils/Constant'
 
 const PlaylistDetailScreen = ({ navigation, route }) => {
@@ -17,6 +18,8 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
     const [averageColor, setAverageColor] = useState('black');
     const [songs, setSongs] = useState([]);
     const [progress, setProgress] = useState(true);
+
+    console.log(songs);
 
     const getMainColor = async () => {
         const result = await ImageColors.getColors(item.thumbnail, {
@@ -114,11 +117,12 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
                                 <Text style={{
                                     color: '#191919',
                                     fontSize: HEIGHT * 0.023,
+                                    fontStyle: 'italic',
                                 }}>{item.total} tracks available</Text>
                             </View>
 
-                            <TouchableOpacity style={{
-                            }}>
+                            <TouchableOpacity
+                                onPress={() => {playPlaylist(songs)}}>
                                 <Image source={require('../../images/ic_playcirle.png')}
                                     resizeMode='center'
                                     style={{
@@ -126,6 +130,7 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
                                         height: HEIGHT * 0.065,
                                         tintColor: averageColor,
                                     }}
+                                    
                                 />
                             </TouchableOpacity>
 
@@ -157,6 +162,7 @@ const PlaylistDetailScreen = ({ navigation, route }) => {
                     <>
                         {songs.map((song, index) => {
                             return <OnDemandItem
+                                onPress={() => playWithSelectedSong(song, songs)}
                                 key={song.id}
                                 item={song} />
                         })}

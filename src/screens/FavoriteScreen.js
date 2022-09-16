@@ -2,6 +2,7 @@ import { View, Text, FlatList, Image, StyleSheet, SafeAreaView, Platform, Toucha
 import React, { useEffect, useState } from 'react'
 import { WIDTH, HEIGHT } from '../utils/Constant'
 import { Color } from '../utils'
+import HeaderTitle from '../components/HeaderTitle'
 
 const FavoriteScreen = () => {
     const [favoriteList, setFavoriteList] = useState()
@@ -19,9 +20,8 @@ const FavoriteScreen = () => {
     getFavoriteList('usertest1')
     return(
         <SafeAreaView style={styles.container}>
-            <View style={styles.headerView}>
-                <Text style={styles.header}>Favorite</Text>
-            </View>
+            <HeaderTitle title='Favorite' />
+            <View style={{ marginTop: HEIGHT * 0.02 }}></View>
             <View style={styles.bodyView}>
                 
                 <FlatList
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     container:{
       flex: 100,
       padding: 10,
-      alignItems: 'center',
       backgroundColor: 'white',
     },
     headerView:{

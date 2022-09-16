@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { HEIGHT, WIDTH } from '../utils/Constant';
 
-const OnDemandItem = ({ item }) => {
+const OnDemandItem = ({ item, ...rest }) => {
 
     const calculate_views = (views) => {
         let temp = views + ""
@@ -26,9 +26,7 @@ const OnDemandItem = ({ item }) => {
     return (
         <TouchableOpacity
             style={styles.container}
-            onPress={() => { 
-                console.log("Clicker song:", item)
-            }}
+            {...rest}
         >
 
             <Image
@@ -40,7 +38,7 @@ const OnDemandItem = ({ item }) => {
             <View style={styles.view_text}>
                 <Text style={{
                     color: 'black',
-                    fontSize: HEIGHT * 0.023,
+                    fontSize: HEIGHT * 0.024,
                     marginBottom: HEIGHT * 0.005,
                 }}
                     ellipsizeMode='tail'
@@ -49,19 +47,12 @@ const OnDemandItem = ({ item }) => {
                     {item.name}
                 </Text>
 
-                <View style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
+                <Text style={{
+                    color: '#191919',
+                    fontSize: HEIGHT * 0.018,
                 }}>
-                    <Icon name='eye' color='black' size={HEIGHT * 0.018} />
-                    <Text style={{
-                        color: '#191919',
-                        fontSize: HEIGHT * 0.018,
-                        marginLeft: WIDTH * 0.01
-                    }}>
-                        {calculate_views(item.views)}
-                    </Text>
-                </View>
+                    {item.country}
+                </Text>
 
 
             </View>

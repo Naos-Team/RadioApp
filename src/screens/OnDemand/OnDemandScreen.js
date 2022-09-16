@@ -10,6 +10,7 @@ import OnDemandReducer from '../../reducers/OnDemandReducer';
 import DemandPlaylistItem from '../../components/DemandPlaylistItem';
 import Progressbar from '../../components/Progressbar';
 import { PLAYLISTDETAIL_SCREEN } from '../../utils/Constant';
+import HeaderTitle from '../../components/HeaderTitle';
 
 const initState = {
     playlists: [],
@@ -74,9 +75,7 @@ const OnDemandScreen = ({ navigation }) => {
                 columnWrapperStyle={{ marginHorizontal: '3%' }}
                 ListHeaderComponent={() => {
                     return (
-                        <View>
-                            <Text style={styles.text}>On Demand</Text>
-                        </View>
+                        <HeaderTitle title='On demand'/>
                     )
                 }}
             />
@@ -87,17 +86,5 @@ const OnDemandScreen = ({ navigation }) => {
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    text: {
-        color: 'black',
-        fontSize: HEIGHT * 0.045,
-        fontWeight: 'bold',
-        marginLeft: WIDTH * 0.045,
-        marginBottom: HEIGHT * 0.01,
-        marginTop: HEIGHT * 0.025
-    },
-
-})
 
 export default OnDemandScreen

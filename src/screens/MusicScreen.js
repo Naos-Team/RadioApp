@@ -12,7 +12,6 @@ import { HEIGHT, WIDTH } from "../utils/Constant";
 const MusicScreen = () => {
 
     const { bottomSheet, isExpand } = useContext(PlayerContext);
-    const { position, duration } = useProgress();
     const [averageColor, setAverageColor] = useState()
 
     const playerState = usePlaybackState();
@@ -20,13 +19,15 @@ const MusicScreen = () => {
     const isPlaying = playerState === State.Playing;
 
     const initTrack = {
-        url: 'https://tainhacmienphi.biz/get/song/api/349290',
-        title: 'No song selected',
-        artist: 'Unknown artist',
-        artwork: 'https://i.scdn.co/image/ab67616d0000b2735888c34015bebbf123957f6d',
+        url: '',
+        title: 'No radio selected',
+        country: 'Unknown country',
+        artwork: 'https://zerojackerzz.com/wp-content/uploads/2019/10/album-placeholder.png',
     }
 
     const [track, setTrack] = useState(initTrack);
+
+    // console.log("re-render music:", track);
 
     useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
 
@@ -34,9 +35,9 @@ const MusicScreen = () => {
             console.log(event.message)
         } else if (event.type === Event.PlaybackTrackChanged && event.nextTrack != null) {
 
-            console.log("Set song")
-
             const track = await TrackPlayer.getTrack(event.nextTrack);
+
+            console.log("Set song", track)
 
             const result = await ImageColors.getColors(track.artwork, {
                 fallback: '#228B22',
@@ -138,7 +139,7 @@ const MusicScreen = () => {
                                 color: '#333333',
                                 fontSize: HEIGHT * 0.016,
                             }}>
-                                {track.artist}
+                                {track.country}
                             </Text>
                         </View>
 
@@ -213,49 +214,63 @@ const MusicScreen = () => {
                     </Text>
                     <Text style={{
                         color: '#191919',
-                        fontSize: HEIGHT * 0.023
+                        fontSize: HEIGHT * 0.024
                     }}>
-                        {track.artist}
+                        {track.country}
                     </Text>
                 </View>
 
-                <View style={styles.view_slider}>
-
-                    <Slider
-                        style={styles.slider}
-                        minimumValue={0}
-                        maximumValue={1}
-                        value={position / duration ? position / duration : 0}
-                        minimumTrackTintColor="#333333"
-                        thumbTintColor="#333333"
-                        maximumTrackTintColor={'#333333'}
-                        onSlidingComplete={async value => TrackPlayer.seekTo(value * duration)}
-                    />
-
+                <View style={styles.view_status}>
                     <View style={{
-                        width: WIDTH * 0.82,
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         flexDirection: 'row',
-                        justifyContent: 'space-between'
+                        borderColor: '#333333',
+                        borderWidth: WIDTH * 0.003,
+                        width: WIDTH * 0.3,
+                        borderRadius: WIDTH,
+                        paddingVertical: HEIGHT * 0.007
                     }}>
+                        <View style={{
+                            height: HEIGHT * 0.025,
+                            width: HEIGHT * 0.025,
+                            backgroundColor: playerState === State.Buffering || playerState === State.Connecting ?
+                                '#ffe599' : playerState === State.Playing ? '#ff3232' : '#8c8c8c',
+                            borderColor: '#333333',
+                            borderWidth: WIDTH * 0.003,
+                            borderRadius: HEIGHT * 0.05
+                        }} />
                         <Text style={{
-                            color: '#333333',
-                            fontSize: HEIGHT * 0.017
-                        }}>{toMinuteFormat(Math.floor(position))}</Text>
-                        <Text style={{
-                            color: '#333333',
-                            fontSize: HEIGHT * 0.017
-                        }}>{toMinuteFormat(Math.floor(duration))}</Text>
+                            color: 'black',
+                            fontWeight: 'bold',
+                            fontSize: HEIGHT * 0.022,
+                            marginLeft: WIDTH * 0.03,
+                        }}>{playerState === State.Buffering || playerState === State.Connecting ?
+                            'Loading' : playerState === State.Playing ? 'Live' : 'Ready'}</Text>
                     </View>
                 </View>
 
+
                 <View style={styles.view_controller}>
+
+                    <TouchableOpacity onPress={() => TrackPlayer.skipToNext()}>
+                        <Image
+                            source={require('../images/ic_unfill_heart.png')}
+                            style={{
+                                tintColor: '#333333',
+                                height: HEIGHT * 0.035,
+                                width: HEIGHT * 0.035
+                            }}
+                        />
+                    </TouchableOpacity>
+
                     <TouchableOpacity onPress={() => TrackPlayer.skipToPrevious()}>
                         <Image
                             source={require('../images/ic_backward.png')}
                             style={{
                                 tintColor: '#333333',
-                                height: HEIGHT * 0.05,
-                                width: HEIGHT * 0.05
+                                height: HEIGHT * 0.04,
+                                width: HEIGHT * 0.04
                             }}
                         />
 
@@ -263,8 +278,8 @@ const MusicScreen = () => {
 
                     {playerState === State.Buffering || playerState === State.Connecting ?
                         <View style={{
-                            height: HEIGHT * 0.08,
-                            width: HEIGHT * 0.08,
+                            height: HEIGHT * 0.07,
+                            width: HEIGHT * 0.07,
                             backgroundColor: '#333333',
                             borderRadius: HEIGHT * 0.16,
                             justifyContent: 'center',
@@ -281,8 +296,8 @@ const MusicScreen = () => {
                                 source={isPlaying ? require('../images/ic_pausecirle.png') : require('../images/ic_playcirle.png')}
                                 style={{
                                     tintColor: '#333333',
-                                    height: HEIGHT * 0.08,
-                                    width: HEIGHT * 0.08
+                                    height: HEIGHT * 0.07,
+                                    width: HEIGHT * 0.07
                                 }}
                             />
 
@@ -296,8 +311,19 @@ const MusicScreen = () => {
                             source={require('../images/ic_forward.png')}
                             style={{
                                 tintColor: '#333333',
-                                height: HEIGHT * 0.05,
-                                width: HEIGHT * 0.05
+                                height: HEIGHT * 0.04,
+                                width: HEIGHT * 0.04
+                            }}
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => TrackPlayer.skipToNext()}>
+                        <Image
+                            source={require('../images/ic_btn_volume.png')}
+                            style={{
+                                tintColor: '#333333',
+                                height: HEIGHT * 0.043,
+                                width: HEIGHT * 0.043
                             }}
                         />
                     </TouchableOpacity>
@@ -348,6 +374,7 @@ const styles = StyleSheet.create({
 
     view_controller: {
         position: 'absolute',
+        paddingHorizontal: WIDTH * 0.02,
         width: WIDTH,
         top: HEIGHT * 0.3,
         flexDirection: 'row',
@@ -357,10 +384,11 @@ const styles = StyleSheet.create({
     slider: {
         width: WIDTH * 0.9,
     },
-    view_slider: {
+    view_status: {
         position: 'absolute',
-        top: HEIGHT * 0.2,
+        top: HEIGHT * 0.19,
         width: WIDTH,
+        justifyContent: 'center',
         alignItems: 'center',
     }
 })
