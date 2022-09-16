@@ -12,7 +12,7 @@ import { HEIGHT, WIDTH } from '../../utils/Constant'
 import { Color } from '../../utils'
 import Icon from 'react-native-vector-icons/Feather'
 import { InputField, CustomButton } from '../../components'
-import { AuthContext } from '../../auth/AuthProvider'
+import { AuthContext } from '../../providers/AuthProvider'
 import { isValidEmail, isValidPassword, isConfirmPassword } from '../../utils/Validation'
 function SignupScreen({ navigation }) {
   const [email, setEmail] = useState('')

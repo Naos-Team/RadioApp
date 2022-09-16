@@ -8,7 +8,7 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native'
-import { AuthContext } from '../../auth/AuthProvider'
+import { AuthContext } from '../../providers/AuthProvider'
 import Icon from 'react-native-vector-icons/Feather'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5'
 import { InputField, CustomButton } from '../../components'

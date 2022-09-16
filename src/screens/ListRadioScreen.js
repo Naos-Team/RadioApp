@@ -2,6 +2,7 @@ import { View, Text, FlatList, RefreshControl, SafeAreaView } from 'react-native
 import React, { useEffect, useState } from 'react'
 import { CountryItem, CountryListItem, RadioTrendingItem, Toolbar } from '../components'
 import { Methods } from '../utils'
+import { playSingleSong } from '../utils/Methods'
 
 const ListRadioScreen = (props) => {
 
@@ -13,7 +14,7 @@ const ListRadioScreen = (props) => {
   })
 
   const onRadioClick = (radio) => {
-    alert(radio.name)
+    playSingleSong(radio)
   }
 
   //navigation

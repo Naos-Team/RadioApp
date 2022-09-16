@@ -2,6 +2,7 @@ import { View, Text, FlatList, RefreshControl, StyleSheet, SafeAreaView } from '
 import React, { useEffect, useState } from 'react'
 import { CountryItem, CountryListItem, RadioTrendingItem, Toolbar } from '../components'
 import { Methods } from '../utils'
+import { playSingleSong } from '../utils/Methods'
 
 const RadioCountryScreen = (props) => {
 
@@ -11,7 +12,7 @@ const RadioCountryScreen = (props) => {
   })
 
   const onRadioClick = (radio) => {
-    alert(radio.name)
+    playSingleSong(radio)
   }
 
   //navigation
