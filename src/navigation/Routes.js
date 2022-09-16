@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import AuthStack from "./AuthStack";
 import TabNav from "./TabNav";
-import { AuthContext } from "../auth/AuthProvider";
+import MainStack from './MainStack';
+import PlayerProvider from '../providers/PlayerProvider'
+import { AuthContext } from '../providers/AuthProvider'
 import auth from '@react-native-firebase/auth';
-import { NavigationContainer } from '@react-navigation/native'
 
 
 export default function Routes() {
@@ -13,19 +14,29 @@ export default function Routes() {
     const onAuthStateChanged = (user) => {
         setUser(user);
         if (initializing) setInitializing(false);
-      };
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber; 
-      }, []);
-    
+        return subscriber;
+    }, []);
+
     if (initializing) return null;
 
     return (
-        <NavigationContainer>
-          {user ? <TabNav /> : <AuthStack />}
-        </NavigationContainer>
+        <>
+            {
+                user
+                    ?
+                    <PlayerProvider>
+                        <MainStack />
+                    </PlayerProvider>
+                    : <AuthStack />
+            }
+
+
+        </>
+
     );
 
 }

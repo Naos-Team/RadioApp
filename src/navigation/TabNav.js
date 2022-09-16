@@ -6,7 +6,6 @@ import RadioStack from './RadioStack';
 import OnDemandStack from './OnDemandStack';
 import MostViewStack from './MostViewStack';
 import FavoriteStack from './FavoriteStack';
-import PremiumStack from './PremiumStack';
 const Tab = createBottomTabNavigator()
 
 const screenOptions = ({route}) => ({

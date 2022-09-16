@@ -6,12 +6,12 @@ const Stack = createNativeStackNavigator();
 const FavoriteStack = () => {
   return (
       <Stack.Navigator
-          initialRouteName={'Favorite'}
+          initialRouteName={'FavoriteScreen'}
           screenOptions={{
               headerShown: false
           }}
       >
-          <Stack.Screen name="Favorite" component={FavoriteScreen} />
+          <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
       </Stack.Navigator>
   )
 }
