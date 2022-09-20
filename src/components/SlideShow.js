@@ -46,6 +46,7 @@ const SlideShow = (props) => {
                     items.map((image, index) => (
 
                         <TouchableOpacity 
+                            key={index}
                             onPress={() => {
                                 navigation.navigate(PLAYLISTDETAIL_SCREEN, {
                                     item: image
