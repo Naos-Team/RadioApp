@@ -45,13 +45,16 @@ const SlideShow = (props) => {
                 {
                     items.map((image, index) => (
 
-                        <TouchableOpacity onPress={() => {
-                            navigation.navigate(PLAYLISTDETAIL_SCREEN, {
-                                item: image
-                            });
-                            key={index}
-                            // console.log("AAAAAA", image)
-                        }}>
+                        <TouchableOpacity 
+                            onPress={() => {
+                                navigation.navigate(PLAYLISTDETAIL_SCREEN, {
+                                    item: image
+                                });
+                                key={index}
+                                // console.log("AAAAAA", image)
+                            }}
+                            style = {{justifyContent:'center'}}
+                        >
                             <SlideShowItem
                                 key={index}
                                 item={image}
